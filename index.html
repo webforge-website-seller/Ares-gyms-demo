@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ares Gym — Colaba, Mumbai</title>
+<meta name="description" content="Ares Gym – Premium fitness centre in Colaba, Mumbai. Strength, personal training, and transformation programs designed for results.">
+<meta name="keywords" content="gym mumbai, colaba gym, fitness centre mumbai, ares gym, personal training mumbai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:       #111010;
+  --ink-soft:  #2a2826;
+  --ink-muted: #6b6560;
+  --ink-faint: #a09a95;
+  --paper:     #f7f4f0;
+  --paper-mid: #ede9e3;
+  --paper-dark:#e0dbd3;
+  --white:     #ffffff;
+  --copper:    #8b5e3c;
+  --copper-lt: #b07d55;
+  --rule:      rgba(17,16,16,0.12);
+  --rule-heavy:rgba(17,16,16,0.25);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'DM Sans', sans-serif;
+  --mono:  'DM Mono', monospace;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--copper); color: var(--white); }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--ink-muted); }
+
+.t-overline {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.t-display {
+  font-family: var(--serif);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+}
+.t-body {
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--ink-muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.28s var(--ease);
+}
+.btn-dark {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.875rem 2rem;
+}
+.btn-dark:hover { background: var(--copper); }
+.btn-dark .arr { transition: transform 0.25s var(--ease); }
+.btn-dark:hover .arr { transform: translateX(4px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--rule-heavy);
+}
+.btn-ghost:hover { color: var(--copper); border-color: var(--copper); }
+.btn-ghost .arr { transition: transform 0.25s; }
+.btn-ghost:hover .arr { transform: translateX(4px); }
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  padding: 0.875rem 2rem;
+  border: 1px solid var(--rule-heavy);
+}
+.btn-outline:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ── NAV ── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 64px;
+  background: rgba(247,244,240,0.92);
+  backdrop-filter: blur(20px) saturate(1.2);
+  border-bottom: 1px solid var(--rule);
+  transition: all 0.3s var(--ease);
+}
+#nav.scrolled { background: rgba(247,244,240,0.97); box-shadow: 0 1px 20px rgba(17,16,16,0.06); }
+.nav-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 5%;
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--serif); font-size: 1.5rem; font-weight: 500;
+  color: var(--ink); text-decoration: none; letter-spacing: 0.04em; line-height: 1;
+}
+.nav-logo em { font-style: italic; font-weight: 300; color: var(--copper); }
+.nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links .nav-join { background: var(--ink); color: var(--paper) !important; padding: 0.55rem 1.25rem; }
+.nav-links .nav-join:hover { background: var(--copper); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 22px; height: 1px; background: var(--ink); transition: all 0.3s; transform-origin: center; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
+.mob-menu {
+  display: none; position: fixed; inset: 64px 0 0; background: var(--paper); z-index: 99;
+  flex-direction: column; padding: 3rem 8%; gap: 0; overflow-y: auto;
+}
+.mob-menu.open { display: flex; }
+.mob-menu a {
+  font-family: var(--serif); font-size: 2.5rem; font-weight: 300; color: var(--ink);
+  text-decoration: none; padding: 1rem 0; border-bottom: 1px solid var(--rule); transition: color 0.2s;
+}
+.mob-menu a:hover { color: var(--copper); }
+.mob-join {
+  margin-top: 2rem; background: var(--ink) !important; color: var(--paper) !important;
+  padding: 1rem 2rem !important; font-family: var(--mono) !important;
+  font-size: 0.75rem !important; letter-spacing: 0.12em !important;
+  border: none !important; text-align: center;
+}
+
+/* ── HERO ── */
+#hero {
+  min-height: 100svh; padding-top: 64px;
+  display: grid; grid-template-rows: 1fr auto;
+  background: var(--paper); position: relative; overflow: hidden;
+}
+.hero-body {
+  display: grid; grid-template-columns: 1fr 1fr;
+  max-width: 1280px; margin: 0 auto; padding: 0 5%; width: 100%;
+  align-items: center; min-height: calc(100svh - 64px - 80px);
+}
+.hero-left { padding: 5rem 0; }
+.hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; }
+.hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--copper); }
+.hero-h1 {
+  font-family: var(--serif); font-size: clamp(3.25rem, 6.5vw, 6.5rem);
+  font-weight: 300; line-height: 1.0; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 2rem;
+}
+.hero-h1 em { font-style: italic; font-weight: 300; color: var(--copper); }
+.hero-sub { font-size: 0.9375rem; line-height: 1.7; color: var(--ink-muted); max-width: 420px; margin-bottom: 3rem; font-weight: 300; }
+.hero-actions { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--rule); }
+.stat-val { font-family: var(--serif); font-size: 2.75rem; font-weight: 300; color: var(--ink); line-height: 1; }
+.stat-val sup { font-size: 1.25rem; color: var(--copper); vertical-align: super; font-family: var(--mono); }
+.stat-lbl { font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-top: 0.35rem; }
+.hero-right { display: flex; justify-content: flex-end; align-items: center; padding: 5rem 0 5rem 4rem; position: relative; }
+.hero-card-wrap { position: relative; width: 100%; max-width: 420px; }
+.hero-main-card {
+  width: 100%; aspect-ratio: 3/4; background: var(--paper-dark);
+  border: 1px solid var(--rule-heavy); position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.hero-card-fig {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(17,16,16,0.7) 100%),
+    linear-gradient(135deg, #2a2220 0%, #1a1714 40%, #22201e 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-card-fig-icon { font-size: 6rem; opacity: 0.18; margin-bottom: 3rem; }
+.hero-card-caption { position: relative; padding: 1.75rem; color: var(--paper); }
+.hero-card-caption .t-overline { color: rgba(247,244,240,0.45); margin-bottom: 0.4rem; }
+.hero-card-caption h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; }
+.hero-pill1 {
+  position: absolute; top: 2rem; right: -1.5rem; background: var(--white);
+  border: 1px solid var(--rule); padding: 1rem 1.25rem;
+  box-shadow: 0 8px 32px rgba(17,16,16,0.08);
+}
+.hero-pill1 .num { font-family: var(--serif); font-size: 2.25rem; font-weight: 300; color: var(--ink); line-height: 1; }
+.hero-pill1 .lbl { font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin-top: 0.15rem; }
+.hero-pill2 {
+  position: absolute; bottom: -1rem; left: -1.5rem;
+  background: var(--copper); padding: 1rem 1.25rem; color: var(--white);
+}
+.hero-pill2 .num { font-family: var(--serif); font-size: 1.875rem; font-weight: 300; line-height: 1; }
+.hero-pill2 .lbl { font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-top: 0.15rem; }
+.ticker-bar {
+  max-width: 1280px; margin: 0 auto; padding: 0 5%; width: 100%;
+  height: 80px; border-top: 1px solid var(--rule);
+  display: flex; align-items: center; overflow: hidden;
+}
+.ticker-track { display: flex; animation: tick 22s linear infinite; }
+@keyframes tick { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+.ticker-item {
+  display: flex; align-items: center; gap: 2.5rem; padding-right: 3rem;
+  flex-shrink: 0; font-family: var(--mono); font-size: 0.6875rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); white-space: nowrap;
+}
+.ticker-dot { width: 4px; height: 4px; background: var(--copper); border-radius: 50%; }
+
+/* ── TRUST BAR ── */
+#trust { background: var(--ink); padding: 4.5rem 0; }
+.trust-row { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: repeat(4,1fr); }
+.trust-cell { padding: 0 3rem; border-left: 1px solid rgba(255,255,255,0.1); }
+.trust-cell:first-child { border-left: none; padding-left: 0; }
+.trust-cell:last-child { padding-right: 0; }
+.trust-n { font-family: var(--serif); font-size: 3.25rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 0.4rem; }
+.trust-n sup { font-size: 1.25rem; color: var(--copper-lt); vertical-align: super; }
+.trust-l { font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+/* ── ABOUT ── */
+#about { padding: 9rem 0; background: var(--paper); }
+.about-grid { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: 5fr 7fr; gap: 8rem; align-items: start; }
+.about-sticky { position: sticky; top: 100px; }
+.about-h { font-size: clamp(2.25rem, 4.5vw, 4.5rem); color: var(--ink); margin: 1rem 0 2rem; }
+.about-h em { font-style: italic; color: var(--copper); }
+.about-p { font-size: 0.9375rem; color: var(--ink-muted); line-height: 1.8; margin-bottom: 1.5rem; }
+.pillars { margin-top: 0.5rem; }
+.pillar { padding: 2rem 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 3rem 1fr; gap: 1.5rem; cursor: default; }
+.pillar:first-child { border-top: 1px solid var(--rule); }
+.pillar:hover .p-idx { color: var(--copper); }
+.p-idx { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.08em; color: var(--ink-faint); padding-top: 0.2rem; transition: color 0.25s; }
+.p-title { font-family: var(--serif); font-size: 1.375rem; font-weight: 400; color: var(--ink); margin-bottom: 0.5rem; }
+.p-body { font-size: 0.875rem; color: var(--ink-muted); line-height: 1.7; }
+
+/* ── TRAINERS ── */
+#trainers { padding: 9rem 0; background: var(--ink); }
+.trainers-hd { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; }
+.trainers-h { font-size: clamp(2.25rem, 4vw, 4rem); color: var(--white); margin-top: 1rem; }
+.trainers-h em { font-style: italic; color: var(--copper-lt); }
+.trainers-sub { font-size: 0.875rem; color: rgba(255,255,255,0.35); max-width: 340px; line-height: 1.7; }
+.trainers-grid { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08); }
+.tc { background: var(--ink); padding: 2.5rem; transition: background 0.3s; cursor: default; }
+.tc:hover { background: #191816; }
+.tc-ava { width: 60px; height: 60px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.75rem; }
+.tc-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--white); margin-bottom: 0.25rem; }
+.tc-role { font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--copper-lt); margin-bottom: 1.25rem; }
+.tc-bio { font-size: 0.875rem; color: rgba(255,255,255,0.4); line-height: 1.7; }
+.tc-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.tag { font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.6rem; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); }
+
+/* ── SERVICES ── */
+#services { padding: 9rem 0; background: var(--paper); }
+.svc-top { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: end; margin-bottom: 5rem; }
+.svc-h { font-size: clamp(2.25rem, 4.5vw, 4.5rem); color: var(--ink); margin-top: 1rem; }
+.svc-h em { font-style: italic; color: var(--copper); }
+.svc-intro { font-size: 0.9375rem; color: var(--ink-muted); line-height: 1.8; }
+.svc-list { max-width: 1280px; margin: 0 auto; padding: 0 5%; }
+.svc-row { display: grid; grid-template-columns: 3.5rem 1fr auto; gap: 2rem; align-items: start; padding: 2.5rem 0; border-bottom: 1px solid var(--rule); transition: all 0.25s; cursor: default; }
+.svc-row:first-child { border-top: 1px solid var(--rule); }
+.svc-row:hover .svc-title { color: var(--copper); }
+.svc-idx { font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.08em; color: var(--ink-faint); padding-top: 0.35rem; }
+.svc-title { font-family: var(--serif); font-size: 1.75rem; font-weight: 400; color: var(--ink); margin-bottom: 0.6rem; transition: color 0.25s; }
+.svc-desc { font-size: 0.875rem; color: var(--ink-muted); line-height: 1.7; max-width: 600px; }
+.svc-feats { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; margin-top: 1rem; }
+.svc-feats li { font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); display: flex; align-items: center; gap: 0.4rem; }
+.svc-feats li::before { content: '—'; color: var(--copper); }
+.svc-ico { font-size: 2rem; opacity: 0.25; padding-top: 0.25rem; }
+
+/* ── MEMBERSHIP ── */
+#membership { padding: 9rem 0; background: var(--paper-mid); border-top: 1px solid var(--rule); }
+.plans-hd { max-width: 1280px; margin: 0 auto; padding: 0 5%; margin-bottom: 4rem; display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: end; }
+.plans-h { font-size: clamp(2.25rem, 4.5vw, 4.5rem); color: var(--ink); margin-top: 1rem; }
+.plans-h em { font-style: italic; color: var(--copper); }
+.plans-intro { font-size: 0.9375rem; color: var(--ink-muted); line-height: 1.8; }
+.plans-grid { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.plan { background: var(--white); border: 1px solid var(--rule); padding: 2.5rem; display: flex; flex-direction: column; transition: box-shadow 0.3s, transform 0.3s; position: relative; }
+.plan:hover { box-shadow: 0 12px 40px rgba(17,16,16,0.08); transform: translateY(-3px); }
+.plan.featured { background: var(--ink); border-color: var(--ink); }
+.plan.featured:hover { box-shadow: 0 16px 50px rgba(17,16,16,0.2); }
+.plan-badge { position: absolute; top: -1px; right: 2rem; background: var(--copper); color: var(--white); font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.75rem; }
+.plan-period { font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 2rem; }
+.plan.featured .plan-period { color: rgba(255,255,255,0.3); }
+.plan-price { font-family: var(--serif); font-size: 3.5rem; font-weight: 300; color: var(--ink); line-height: 1; display: flex; align-items: flex-start; gap: 0.2rem; margin-bottom: 0.75rem; }
+.plan.featured .plan-price { color: var(--white); }
+.plan-price .cur { font-size: 1.25rem; margin-top: 0.5rem; }
+.plan-price .dur { font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.08em; color: var(--ink-faint); align-self: flex-end; margin-bottom: 0.5rem; text-transform: uppercase; }
+.plan.featured .plan-price .dur { color: rgba(255,255,255,0.3); }
+.plan-tag { font-size: 0.875rem; color: var(--ink-muted); line-height: 1.6; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
+.plan.featured .plan-tag { color: rgba(255,255,255,0.4); border-color: rgba(255,255,255,0.1); }
+.plan-feats { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 0.875rem; margin-bottom: 2.5rem; }
+.plan-feats li { font-size: 0.8125rem; color: var(--ink-muted); display: flex; align-items: flex-start; gap: 0.75rem; line-height: 1.5; }
+.plan.featured .plan-feats li { color: rgba(255,255,255,0.45); }
+.plan-feats .ck { color: var(--copper); font-size: 0.75rem; flex-shrink: 0; margin-top: 0.1rem; }
+.plan-feats .dim-item { opacity: 0.38; }
+.plan .btn-dark { width: 100%; justify-content: center; }
+.plan.featured .btn-dark { background: var(--white); color: var(--ink); }
+.plan.featured .btn-dark:hover { background: var(--paper); }
+.plan .btn-outline { width: 100%; justify-content: center; }
+.plans-note { text-align: center; font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 2.5rem; padding: 0 5%; }
+
+/* ── TESTIMONIALS ── */
+#testimonials { padding: 9rem 0; background: var(--paper); border-top: 1px solid var(--rule); }
+.test-hd { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; }
+.test-h { font-size: clamp(2.25rem, 4vw, 4rem); color: var(--ink); margin-top: 1rem; }
+.test-h em { font-style: italic; color: var(--copper); }
+.test-ct { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em; color: var(--ink-muted); text-transform: uppercase; }
+.test-grid { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.tcard { background: var(--paper); padding: 2.5rem; transition: background 0.25s; }
+.tcard:hover { background: var(--white); }
+.tstars { display: flex; gap: 0.2rem; margin-bottom: 1.5rem; }
+.tstar { width: 10px; height: 10px; background: var(--copper); }
+.tquote { font-family: var(--serif); font-size: 1.125rem; font-weight: 300; line-height: 1.65; color: var(--ink); font-style: italic; margin-bottom: 2rem; }
+.tauthor { display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--rule); padding-top: 1.5rem; }
+.tava { width: 40px; height: 40px; background: var(--paper-dark); border: 1px solid var(--rule-heavy); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1rem; color: var(--ink-muted); }
+.tname { font-family: var(--serif); font-size: 1rem; color: var(--ink); }
+.tres { font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--copper); margin-top: 0.15rem; }
+
+/* ── GALLERY ── */
+#gallery { padding: 9rem 0; background: var(--ink); }
+.gallery-hd { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+.gallery-h { font-size: clamp(2.25rem, 4vw, 4rem); color: var(--white); margin-top: 1rem; }
+.gallery-h em { font-style: italic; color: var(--copper-lt); }
+.gallery-loc { font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+.gallery-grid { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: repeat(12,1fr); grid-template-rows: repeat(2,260px); gap: 8px; }
+.gi { background: #1e1c1a; border: 1px solid rgba(255,255,255,0.05); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.3s; }
+.gi:hover { border-color: rgba(255,255,255,0.15); }
+.gi:hover .gi-ov { opacity: 1; }
+.gi-a { grid-column: span 5; }
+.gi-b { grid-column: span 3; }
+.gi-c { grid-column: span 4; }
+.gi-d { grid-column: span 3; }
+.gi-e { grid-column: span 5; }
+.gi-f { grid-column: span 4; }
+.gi-fig { font-size: 3.5rem; opacity: 0.1; }
+.gi-ov { position: absolute; inset: 0; background: rgba(17,16,16,0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 1.25rem; }
+.gi-lbl { font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,244,240,0.65); }
+
+/* ── CTA ── */
+#cta { padding: 10rem 0; background: var(--paper-mid); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.cta-inner { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; }
+.cta-h { font-size: clamp(2.5rem, 5vw, 5rem); color: var(--ink); margin: 1rem 0 2rem; }
+.cta-h em { font-style: italic; color: var(--copper); }
+.cta-body { font-size: 0.9375rem; color: var(--ink-muted); line-height: 1.8; }
+.cta-actions { display: flex; flex-direction: column; gap: 1rem; }
+.cta-actions .btn-dark { justify-content: center; }
+.cta-actions .btn-outline { justify-content: center; }
+.cta-note { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 0.5rem; text-align: center; }
+
+/* ── CONTACT ── */
+#contact { padding: 9rem 0; background: var(--paper); border-top: 1px solid var(--rule); }
+.contact-grid { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: 5fr 7fr; gap: 8rem; align-items: start; }
+.contact-h { font-family: var(--serif); font-size: clamp(2.25rem, 4.5vw, 4.5rem); font-weight: 300; color: var(--ink); margin: 1rem 0 1.5rem; line-height: 1.05; }
+.contact-h em { font-style: italic; color: var(--copper); }
+.contact-p { font-size: 0.9375rem; color: var(--ink-muted); line-height: 1.8; margin-bottom: 3rem; }
+.cds { display: flex; flex-direction: column; }
+.cd { padding: 1.5rem 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 8rem 1fr; gap: 1.5rem; }
+.cd:first-child { border-top: 1px solid var(--rule); }
+.cd-k { font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); padding-top: 0.2rem; }
+.cd-v { font-size: 0.875rem; color: var(--ink); line-height: 1.65; }
+.cd-v a { color: var(--ink); text-decoration: none; transition: color 0.2s; }
+.cd-v a:hover { color: var(--copper); }
+.cbtns { display: flex; gap: 0.75rem; margin-top: 2.5rem; flex-wrap: wrap; }
+.cb-phone { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--ink); color: var(--paper); padding: 0.875rem 1.5rem; font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+.cb-phone:hover { background: var(--copper); }
+.cb-wa { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--ink); padding: 0.875rem 1.5rem; border: 1px solid var(--rule-heavy); font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+.cb-wa:hover { background: #25D366; color: var(--white); border-color: #25D366; }
+.map-wrap { margin-top: 2.5rem; height: 200px; border: 1px solid var(--rule); overflow: hidden; }
+.map-wrap iframe { width: 100%; height: 100%; border: none; filter: grayscale(1) contrast(1.1); transition: filter 0.6s; }
+.map-wrap:hover iframe { filter: none; }
+.contact-right { position: sticky; top: 100px; }
+.form-card { background: var(--white); border: 1px solid var(--rule); padding: 3rem; }
+.form-hd { margin-bottom: 2.5rem; }
+.form-title { font-family: var(--serif); font-size: 2rem; font-weight: 400; color: var(--ink); margin-top: 0.5rem; }
+.fg { margin-bottom: 1.5rem; }
+.fl { display: block; font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.5rem; }
+.fi { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--rule-heavy); padding: 0.625rem 0; font-family: var(--sans); font-size: 0.9375rem; font-weight: 300; color: var(--ink); outline: none; transition: border-color 0.2s; }
+.fi:focus { border-color: var(--copper); }
+.fi::placeholder { color: var(--ink-faint); }
+select.fi { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%236b6560' stroke-width='1'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0 center; padding-right: 1.5rem; }
+textarea.fi { resize: vertical; min-height: 90px; }
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.ferr { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.08em; color: #c0392b; margin-top: 0.35rem; display: none; }
+.ferr.show { display: block; }
+.fsub-btn { width: 100%; background: var(--ink); color: var(--paper); padding: 1rem; border: none; cursor: pointer; font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 2rem; }
+.fsub-btn:hover:not(:disabled) { background: var(--copper); }
+.fsub-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.form-ok { display: none; margin-top: 1.5rem; padding: 1.25rem 1.5rem; border: 1px solid rgba(139,94,60,0.2); background: rgba(139,94,60,0.04); }
+.form-ok.show { display: block; }
+.form-ok p { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--copper); }
+.form-note { font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 1rem; text-align: center; }
+
+/* ── FOOTER ── */
+footer { background: var(--ink); padding: 5rem 0 2.5rem; }
+.ft { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 2.5rem; }
+.f-brand a { font-family: var(--serif); font-size: 2rem; font-weight: 400; color: var(--white); text-decoration: none; display: block; margin-bottom: 1rem; }
+.f-brand a em { font-style: italic; color: var(--copper-lt); }
+.f-brand p { font-size: 0.8125rem; color: rgba(255,255,255,0.28); line-height: 1.75; max-width: 280px; }
+.f-col-h { font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 1.5rem; }
+.f-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.875rem; }
+.f-col ul a { font-size: 0.875rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.f-col ul a:hover { color: var(--white); }
+.fb { max-width: 1280px; margin: 0 auto; padding: 0 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.fb p { font-family: var(--mono); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.18); }
+.fb a { color: rgba(255,255,255,0.28); text-decoration: none; transition: color 0.2s; }
+.fb a:hover { color: var(--copper-lt); }
+
+/* ── FLOATS ── */
+.f-join { position: fixed; bottom: 2rem; right: 2rem; z-index: 90; background: var(--ink); color: var(--paper); padding: 0.75rem 1.5rem; font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.12); transition: all 0.25s; display: flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 20px rgba(17,16,16,0.15); }
+.f-join:hover { background: var(--copper); border-color: var(--copper); }
+.f-dot { width: 6px; height: 6px; background: var(--copper-lt); border-radius: 50%; animation: blink 2s infinite; }
+.f-join:hover .f-dot { background: var(--white); }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+.f-wa { position: fixed; bottom: 2rem; left: 2rem; z-index: 90; width: 48px; height: 48px; background: var(--white); border: 1px solid var(--rule-heavy); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; text-decoration: none; box-shadow: 0 4px 16px rgba(17,16,16,0.1); transition: all 0.25s; }
+.f-wa:hover { background: #25D366; border-color: #25D366; transform: scale(1.05); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero-body { grid-template-columns: 1fr; min-height: auto; }
+  .hero-right { display: none; }
+  .hero-left { padding: 4rem 0 3rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 4rem; }
+  .about-sticky { position: static; }
+  .trainers-grid { grid-template-columns: 1fr 1fr; }
+  .svc-top { grid-template-columns: 1fr; gap: 2rem; }
+  .plans-hd { grid-template-columns: 1fr; gap: 2rem; }
+  .plans-grid { grid-template-columns: 1fr; max-width: 500px; }
+  .test-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: repeat(3,200px); }
+  .gi-a,.gi-b,.gi-c,.gi-d,.gi-e,.gi-f { grid-column: span 1; }
+  .cta-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+  .contact-right { position: static; }
+  .ft { grid-template-columns: 1fr 1fr; }
+  .trust-row { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .trust-cell { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem 0 0; }
+  .trust-cell:nth-child(1), .trust-cell:nth-child(2) { border-top: none; padding-top: 0; }
+  .trainers-hd { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .test-hd { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .gallery-hd { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .trainers-grid { grid-template-columns: 1fr; }
+  .svc-row { grid-template-columns: 2.5rem 1fr; }
+  .svc-ico { display: none; }
+  .test-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-rows: repeat(3,160px); }
+  .ft { grid-template-columns: 1fr; gap: 2.5rem; }
+  .frow { grid-template-columns: 1fr; }
+  .form-card { padding: 2rem; }
+  .fb { flex-direction: column; text-align: center; }
+  .hero-stats { flex-wrap: wrap; gap: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Ares<em>Gym</em></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#membership">Membership</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-join">Join Now</a></li>
+    </ul>
+    <button class="hamburger" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#about"      onclick="closeMenu()">About</a>
+  <a href="#services"   onclick="closeMenu()">Services</a>
+  <a href="#membership" onclick="closeMenu()">Membership</a>
+  <a href="#gallery"    onclick="closeMenu()">Gallery</a>
+  <a href="#contact"    onclick="closeMenu()">Contact</a>
+  <a href="#contact"    onclick="closeMenu()" class="mob-join">Join Now →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-body">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="t-overline">Colaba, Mumbai · Est. 2017</span>
+      </div>
+      <h1 class="hero-h1">Transform<br>Your <em>Body.</em><br>Own Your<br>Strength.</h1>
+      <p class="hero-sub">Ares Gym is Mumbai's most trusted premium fitness centre — built on results, grounded in expertise, and defined by the people who train here.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-dark">Begin Your Journey <span class="arr">→</span></a>
+        <a href="#membership" class="btn btn-ghost">View Plans <span class="arr">→</span></a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-val">500<sup>+</sup></div>
+          <div class="stat-lbl">Members</div>
+        </div>
+        <div>
+          <div class="stat-val">300<sup>+</sup></div>
+          <div class="stat-lbl">Transformations</div>
+        </div>
+        <div>
+          <div class="stat-val">10<sup>+</sup></div>
+          <div class="stat-lbl">Trainers</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card-wrap">
+        <div class="hero-main-card">
+          <div class="hero-card-fig">
+            <div class="hero-card-fig-icon">🏋️</div>
+          </div>
+          <div class="hero-card-caption">
+            <div class="t-overline" style="color:rgba(247,244,240,0.45);margin-bottom:0.4rem;">Member Spotlight</div>
+            <h3>Become Legendary</h3>
+          </div>
+        </div>
+        <div class="hero-pill1">
+          <div class="num">7+</div>
+          <div class="lbl">Years of<br>Excellence</div>
+        </div>
+        <div class="hero-pill2">
+          <div class="num">5 ★</div>
+          <div class="lbl">Rated Gym</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ticker-bar">
+    <div class="ticker-track" aria-hidden="true">
+      <div class="ticker-item"><span class="ticker-dot"></span>Strength Training</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Personal Training</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Weight Loss Programs</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Cardio &amp; Endurance</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Premium Equipment</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Certified Trainers</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Real Results</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Colaba, Mumbai</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Strength Training</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Personal Training</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Weight Loss Programs</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Cardio &amp; Endurance</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Premium Equipment</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Certified Trainers</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Real Results</div>
+      <div class="ticker-item"><span class="ticker-dot"></span>Colaba, Mumbai</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section id="trust">
+  <div class="trust-row">
+    <div class="trust-cell reveal"><div class="trust-n">500<sup>+</sup></div><div class="trust-l">Active Members</div></div>
+    <div class="trust-cell reveal d1"><div class="trust-n">300<sup>+</sup></div><div class="trust-l">Transformations</div></div>
+    <div class="trust-cell reveal d2"><div class="trust-n">10<sup>+</sup></div><div class="trust-l">Certified Trainers</div></div>
+    <div class="trust-cell reveal d3"><div class="trust-n">7<sup>+</sup></div><div class="trust-l">Years of Excellence</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-sticky">
+      <div class="t-overline reveal">Our Story</div>
+      <h2 class="t-display about-h reveal d1">We Build<br><em>Champions.</em></h2>
+      <p class="about-p reveal d2">Founded in the heart of Colaba, Ares Gym was built on a singular conviction: that world-class fitness should be accessible, intentional, and lasting.</p>
+      <p class="about-p reveal d3">Named after the Greek god of war, we forge strength, discipline, and resilience in every member who walks through our doors — from first-timers to seasoned athletes.</p>
+      <div style="margin-top:2.5rem;" class="reveal d3">
+        <a href="#contact" class="btn btn-ghost">Book a Free Trial <span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal"><div class="p-idx">01</div><div><div class="p-title">World-Class Equipment</div><p class="p-body">Over 500 pieces of premium equipment — free weights, cable machines, cardio and more — maintained to the highest standard.</p></div></div>
+      <div class="pillar reveal d1"><div class="p-idx">02</div><div><div class="p-title">Customised Programs</div><p class="p-body">Every member receives a tailored training plan based on their unique body composition, goals, and schedule. No generic templates.</p></div></div>
+      <div class="pillar reveal d2"><div class="p-idx">03</div><div><div class="p-title">Expert Coaching</div><p class="p-body">Our team of internationally certified trainers brings decades of combined experience in strength, conditioning, and transformation coaching.</p></div></div>
+      <div class="pillar reveal d3"><div class="p-idx">04</div><div><div class="p-title">A Community That Drives You</div><p class="p-body">Join a tribe of committed individuals who hold each other accountable, celebrate wins, and show up every single day.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINERS -->
+<section id="trainers">
+  <div class="trainers-hd">
+    <div>
+      <div class="t-overline" style="color:rgba(255,255,255,0.28);">Our Coaches</div>
+      <h2 class="t-display trainers-h reveal d1">Meet the <em>Team</em></h2>
+    </div>
+    <p class="trainers-sub reveal d2">Certified experts obsessed with your progress. They don't just train you — they transform you.</p>
+  </div>
+  <div class="trainers-grid">
+    <div class="tc reveal"><div class="tc-ava">🏆</div><div class="tc-name">Vikram Singh</div><div class="tc-role">Head Coach · Strength Specialist</div><p class="tc-bio">Former national-level powerlifter with 12+ years of coaching. Specialises in building raw strength and elite muscle mass using evidence-based methods.</p><div class="tc-tags"><span class="tag">Powerlifting</span><span class="tag">Hypertrophy</span><span class="tag">Programming</span></div></div>
+    <div class="tc reveal d1"><div class="tc-ava">💪</div><div class="tc-name">Priya Nair</div><div class="tc-role">Transformation Coach · Nutritionist</div><p class="tc-bio">Certified nutritionist and fitness coach with 200+ successful transformations. Combines science-backed training with personalised nutrition for lasting results.</p><div class="tc-tags"><span class="tag">Fat Loss</span><span class="tag">Nutrition</span><span class="tag">Body Recomp</span></div></div>
+    <div class="tc reveal d2"><div class="tc-ava">⚡</div><div class="tc-name">Rahul Mehta</div><div class="tc-role">Athletic Performance · Cardio</div><p class="tc-bio">Sports science graduate and endurance athlete. Specialises in cardiovascular conditioning, HIIT programming, and sport-specific performance training.</p><div class="tc-tags"><span class="tag">Endurance</span><span class="tag">HIIT</span><span class="tag">Athletic Perf.</span></div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="svc-top">
+    <div>
+      <div class="t-overline reveal">What We Offer</div>
+      <h2 class="t-display svc-h reveal d1">Our<br><em>Programs</em></h2>
+    </div>
+    <p class="svc-intro reveal d2">From foundational strength to elite conditioning — every program is designed with one objective: measurable, sustainable results. Choose your path.</p>
+  </div>
+  <div class="svc-list">
+    <div class="svc-row reveal"><div class="svc-idx">01</div><div><div class="svc-title">Strength Training</div><p class="svc-desc">Build foundational strength using compound movements, progressive overload, and periodised programming. Suitable for all levels — from your first barbell to competition prep.</p><ul class="svc-feats"><li>Progressive overload methodology</li><li>Compound &amp; isolation lifts</li><li>Powerlifting tracks</li><li>Form coaching included</li></ul></div><div class="svc-ico">🏋️‍♂️</div></div>
+    <div class="svc-row reveal"><div class="svc-idx">02</div><div><div class="svc-title">Personal Training</div><p class="svc-desc">One-on-one sessions with a certified coach. Fully personalised workouts, nutritional guidance, and constant accountability designed entirely around your specific goals.</p><ul class="svc-feats"><li>Dedicated 1-on-1 coaching</li><li>Custom workout design</li><li>Nutrition planning</li><li>Weekly progress review</li></ul></div><div class="svc-ico">🎯</div></div>
+    <div class="svc-row reveal"><div class="svc-idx">03</div><div><div class="svc-title">Weight Loss Programs</div><p class="svc-desc">Scientifically-designed fat loss protocols combining resistance training, strategic cardio, and nutrition planning. Real, sustainable transformations — no crash diets, no gimmicks.</p><ul class="svc-feats"><li>Metabolic conditioning</li><li>Caloric strategy planning</li><li>Body composition tracking</li><li>Before &amp; after documentation</li></ul></div><div class="svc-ico">🔥</div></div>
+    <div class="svc-row reveal"><div class="svc-idx">04</div><div><div class="svc-title">Cardio &amp; Endurance</div><p class="svc-desc">Elevate cardiovascular fitness and total-body endurance with HIIT, steady-state programming, and sport-specific conditioning. Built for performance — not just aesthetics.</p><ul class="svc-feats"><li>HIIT &amp; Tabata protocols</li><li>Treadmill &amp; cycle programming</li><li>VO₂ max improvement</li><li>Recovery &amp; stamina work</li></ul></div><div class="svc-ico">💨</div></div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section id="membership">
+  <div class="plans-hd">
+    <div>
+      <div class="t-overline reveal">Membership</div>
+      <h2 class="t-display plans-h reveal d1">Choose Your<br><em>Plan</em></h2>
+    </div>
+    <p class="plans-intro reveal d2">Every plan includes full gym access, locker facilities, and a complimentary fitness assessment with a certified trainer. No hidden fees, no surprises.</p>
+  </div>
+  <div class="plans-grid">
+    <div class="plan reveal">
+      <div class="plan-period">Monthly Membership</div>
+      <div class="plan-price"><span class="cur">₹</span>2,499<span class="dur">/mo</span></div>
+      <p class="plan-tag">Ideal for those starting out. Full access with no long-term commitment required.</p>
+      <ul class="plan-feats">
+        <li><span class="ck">✓</span> Full gym access (6 AM – 10 PM)</li>
+        <li><span class="ck">✓</span> Locker room &amp; shower</li>
+        <li><span class="ck">✓</span> Free fitness assessment</li>
+        <li><span class="ck">✓</span> Group classes (2 per week)</li>
+        <li class="dim-item"><span class="ck" style="color:var(--ink-faint)">✗</span> Personal training sessions</li>
+        <li class="dim-item"><span class="ck" style="color:var(--ink-faint)">✗</span> Nutrition consultation</li>
+      </ul>
+      <a href="#contact" class="btn btn-outline">Get Started →</a>
+    </div>
+    <div class="plan featured reveal d1">
+      <div class="plan-badge">Most Popular</div>
+      <div class="plan-period">Quarterly Membership</div>
+      <div class="plan-price"><span class="cur">₹</span>6,499<span class="dur">/3 mo</span></div>
+      <p class="plan-tag">Best value for committed members. Premium perks and trainer-guided sessions included.</p>
+      <ul class="plan-feats">
+        <li><span class="ck">✓</span> Full gym access (6 AM – 10 PM)</li>
+        <li><span class="ck">✓</span> Locker room &amp; shower</li>
+        <li><span class="ck">✓</span> Free fitness assessment</li>
+        <li><span class="ck">✓</span> Unlimited group classes</li>
+        <li><span class="ck">✓</span> 2 personal training sessions</li>
+        <li><span class="ck">✓</span> 1 nutrition consultation</li>
+      </ul>
+      <a href="#contact" class="btn btn-dark">Get Started →</a>
+    </div>
+    <div class="plan reveal d2">
+      <div class="plan-period">Annual Membership</div>
+      <div class="plan-price"><span class="cur">₹</span>22,999<span class="dur">/yr</span></div>
+      <p class="plan-tag">For the dedicated athlete. Maximum savings and full premium access year-round.</p>
+      <ul class="plan-feats">
+        <li><span class="ck">✓</span> Full gym access (6 AM – 10 PM)</li>
+        <li><span class="ck">✓</span> Locker room &amp; shower</li>
+        <li><span class="ck">✓</span> Free fitness assessment</li>
+        <li><span class="ck">✓</span> Unlimited group classes</li>
+        <li><span class="ck">✓</span> 8 personal training sessions</li>
+        <li><span class="ck">✓</span> Monthly nutrition check-ins</li>
+      </ul>
+      <a href="#contact" class="btn btn-outline">Get Started →</a>
+    </div>
+  </div>
+  <p class="plans-note">* Prices are indicative. Contact us for current offers, student &amp; corporate discounts.</p>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="test-hd">
+    <div>
+      <div class="t-overline reveal">Member Stories</div>
+      <h2 class="t-display test-h reveal d1">Real People,<br><em>Real Results</em></h2>
+    </div>
+    <div class="test-ct reveal">6 verified reviews</div>
+  </div>
+  <div class="test-grid">
+    <div class="tcard reveal"><div class="tstars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div><p class="tquote">"Lost 18 kg in 5 months. The trainers are relentless in the best way. This isn't a gym — it's a complete lifestyle reset."</p><div class="tauthor"><div class="tava">AM</div><div><div class="tname">Arjun Malhotra</div><div class="tres">−18 kg · 5 months</div></div></div></div>
+    <div class="tcard reveal d1"><div class="tstars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div><p class="tquote">"As a working woman in Mumbai, I needed a gym that respected my time. Ares delivers world-class workouts efficiently. My body has completely transformed."</p><div class="tauthor"><div class="tava">SR</div><div><div class="tname">Sneha Reddy</div><div class="tres">Full transformation · 3 months</div></div></div></div>
+    <div class="tcard reveal d2"><div class="tstars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div><p class="tquote">"Went from skinny to gaining 8 kg of solid muscle. Coach Vikram's programming is exceptional. Best investment I've ever made in myself."</p><div class="tauthor"><div class="tava">KJ</div><div><div class="tname">Karan Joshi</div><div class="tres">+8 kg muscle · 4 months</div></div></div></div>
+    <div class="tcard reveal"><div class="tstars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div><p class="tquote">"The equipment quality is unmatched. No waiting, no worn-out machines. I've tried 4 gyms in Mumbai — nothing comes close to Ares."</p><div class="tauthor"><div class="tava">RP</div><div><div class="tname">Rohan Patel</div><div class="tres">Member · 2 years</div></div></div></div>
+    <div class="tcard reveal d1"><div class="tstars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div><p class="tquote">"Priya's program changed not just my body but my relationship with food. Down 12 kg and genuinely feeling 10 years younger. Life-changing."</p><div class="tauthor"><div class="tava">DK</div><div><div class="tname">Deepa Kapoor</div><div class="tres">−12 kg · 6 months</div></div></div></div>
+    <div class="tcard reveal d2"><div class="tstars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div><p class="tquote">"Rahul's cardio programming took me from struggling at 5 km to completing a half marathon. Professional, clean, and genuinely results-driven."</p><div class="tauthor"><div class="tava">NS</div><div><div class="tname">Nikhil Shah</div><div class="tres">Half marathon completed</div></div></div></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-hd">
+    <div>
+      <div class="t-overline" style="color:rgba(255,255,255,0.25);">Inside Ares Gym</div>
+      <h2 class="t-display gallery-h reveal d1">Our <em>Facility</em></h2>
+    </div>
+    <span class="gallery-loc">Colaba · Mumbai</span>
+  </div>
+  <div class="gallery-grid">
+    <div class="gi gi-a reveal"><div class="gi-fig">🏋️</div><div class="gi-ov"><span class="gi-lbl">Main Weight Floor</span></div></div>
+    <div class="gi gi-b reveal d1"><div class="gi-fig">💪</div><div class="gi-ov"><span class="gi-lbl">PT Session</span></div></div>
+    <div class="gi gi-c reveal d2"><div class="gi-fig">🔥</div><div class="gi-ov"><span class="gi-lbl">Cardio Zone</span></div></div>
+    <div class="gi gi-d reveal d1"><div class="gi-fig">⚡</div><div class="gi-ov"><span class="gi-lbl">HIIT Station</span></div></div>
+    <div class="gi gi-e reveal d2"><div class="gi-fig">🏆</div><div class="gi-ov"><span class="gi-lbl">Member Results</span></div></div>
+    <div class="gi gi-f reveal d3"><div class="gi-fig">🦾</div><div class="gi-ov"><span class="gi-lbl">Free Weights</span></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div>
+      <div class="t-overline reveal">Start Today</div>
+      <h2 class="t-display cta-h reveal d1">Stop Waiting.<br><em>Start Now.</em></h2>
+      <p class="cta-body reveal d2">Your first trial session is completely free. No commitment, no pressure — just an opportunity to experience what training at Ares truly feels like.</p>
+    </div>
+    <div class="cta-actions reveal d2">
+      <a href="#contact" class="btn btn-dark">Book Your Free Trial →</a>
+      <a href="tel:09867586790" class="btn btn-outline">Call Us Directly →</a>
+      <p class="cta-note">Free trial · No credit card · Colaba, Mumbai</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="t-overline reveal">Get in Touch</div>
+      <h2 class="contact-h reveal d1">Find Us in<br><em>Colaba</em></h2>
+      <p class="contact-p reveal d2">Questions? Ready to begin? Our team responds within 24 hours. Or simply walk in — we'd love to show you around.</p>
+      <div class="cds reveal d2">
+        <div class="cd"><div class="cd-k">Address</div><div class="cd-v">Kamal Mansion, Radio Club,<br>4/56-57, HNAA Rd, HNA,<br>Colaba, Mumbai 400005</div></div>
+        <div class="cd"><div class="cd-k">Phone</div><div class="cd-v"><a href="tel:09867586790">098675 86790</a></div></div>
+        <div class="cd"><div class="cd-k">Hours</div><div class="cd-v">Mon – Sat &nbsp; 6:00 AM – 10:00 PM<br>Sunday &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:00 AM – 6:00 PM</div></div>
+        <div class="cd"><div class="cd-k">Directions</div><div class="cd-v"><a href="https://maps.app.goo.gl/vyepyp3hoQ2s7fMj8" target="_blank">Open in Google Maps →</a></div></div>
+      </div>
+      <div class="cbtns reveal d3">
+        <a href="tel:09867586790" class="cb-phone">📞 Call Now</a>
+        <a href="https://wa.me/919867586790?text=Hi!%20I%20am%20interested%20in%20joining%20Ares%20Gym." target="_blank" class="cb-wa">💬 WhatsApp</a>
+      </div>
+      <div class="map-wrap reveal d3">
+        <iframe src="https://maps.google.com/maps?q=Kamal+Mansion+Radio+Club+Colaba+Mumbai&output=embed&z=16" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+    <div class="contact-right reveal d1">
+      <div class="form-card">
+        <div class="form-hd">
+          <div class="t-overline">Free Consultation</div>
+          <h3 class="form-title">Begin Your Journey</h3>
+        </div>
+        <form id="cForm" onsubmit="handleSubmit(event)">
+          <div class="frow">
+            <div class="fg">
+              <label class="fl" for="name">Full Name *</label>
+              <input class="fi" type="text" id="name" name="name" placeholder="Your name" required>
+              <div class="ferr" id="nameErr">Please enter your name.</div>
+            </div>
+            <div class="fg">
+              <label class="fl" for="phone">Phone *</label>
+              <input class="fi" type="tel" id="phone" name="phone" placeholder="10-digit number" required>
+              <div class="ferr" id="phoneErr">Please enter a valid number.</div>
+            </div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="email">Email Address *</label>
+            <input class="fi" type="email" id="email" name="email" placeholder="your@email.com" required>
+            <div class="ferr" id="emailErr">Please enter a valid email.</div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="interest">Interested In</label>
+            <select class="fi" id="interest" name="interest">
+              <option value="">Select a program</option>
+              <option>General Membership</option>
+              <option>Personal Training</option>
+              <option>Weight Loss Program</option>
+              <option>Strength Training</option>
+              <option>Free Trial Session</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="fl" for="message">Message</label>
+            <textarea class="fi" id="message" name="message" placeholder="Tell us about your fitness goals…"></textarea>
+          </div>
+          <button type="submit" class="fsub-btn" id="subBtn">
+            <span id="btnTxt">Send Message →</span>
+            <span id="btnLoad" style="display:none">Sending…</span>
+          </button>
+          <div class="form-ok" id="formOk">
+            <p>✓ &nbsp;Thanks! We will contact you soon.</p>
+          </div>
+          <p class="form-note">Your information is kept private and never shared.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div class="f-brand">
+      <a href="#hero">Ares<em>Gym</em></a>
+      <p>Mumbai's most trusted premium fitness centre in Colaba. Transforming bodies and building lasting habits since 2017.</p>
+    </div>
+    <div class="f-col">
+      <div class="f-col-h">Navigate</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#trainers">Trainers</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#membership">Membership</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <div class="f-col-h">Programs</div>
+      <ul>
+        <li><a href="#services">Strength Training</a></li>
+        <li><a href="#services">Personal Training</a></li>
+        <li><a href="#services">Weight Loss</a></li>
+        <li><a href="#services">Cardio &amp; Endurance</a></li>
+        <li><a href="#services">Group Classes</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <div class="f-col-h">Contact</div>
+      <ul>
+        <li><a href="tel:09867586790">098675 86790</a></li>
+        <li><a href="https://wa.me/919867586790">WhatsApp Us</a></li>
+        <li><a href="https://maps.app.goo.gl/vyepyp3hoQ2s7fMj8" target="_blank">Get Directions</a></li>
+        <li><a href="#contact">Colaba, Mumbai 400005</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fb">
+    <p>© 2025 Ares Gym. All rights reserved.</p>
+    <p><a href="https://maps.app.goo.gl/vyepyp3hoQ2s7fMj8" target="_blank">Kamal Mansion, Radio Club, Colaba, Mumbai</a></p>
+  </div>
+</footer>
+
+<!-- FLOATING -->
+<a href="#contact" class="f-join"><span class="f-dot"></span>Join Now →</a>
+<a href="https://wa.me/919867586790?text=Hi!%20I%20want%20to%20join%20Ares%20Gym." target="_blank" class="f-wa" title="WhatsApp">💬</a>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+function toggleMenu() {
+  const h = document.getElementById('ham'), m = document.getElementById('mobMenu');
+  h.classList.toggle('open'); m.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('mobMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+function handleSubmit(e) {
+  e.preventDefault();
+  let ok = true;
+  const name = document.getElementById('name');
+  const phone = document.getElementById('phone');
+  const email = document.getElementById('email');
+  document.querySelectorAll('.ferr').forEach(el => el.classList.remove('show'));
+  if (!name.value.trim() || name.value.trim().length < 2) { document.getElementById('nameErr').classList.add('show'); ok = false; }
+  if (phone.value.replace(/\D/g,'').length < 10) { document.getElementById('phoneErr').classList.add('show'); ok = false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { document.getElementById('emailErr').classList.add('show'); ok = false; }
+  if (!ok) return;
+  const btn = document.getElementById('subBtn');
+  const txt = document.getElementById('btnTxt');
+  const load = document.getElementById('btnLoad');
+  btn.disabled = true; txt.style.display = 'none'; load.style.display = 'block';
+  fetch('https://formsubmit.co/ajax/mohitk43131@gmail.com', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: new FormData(document.getElementById('cForm'))
+  })
+  .catch(() => ({}))
+  .finally(() => {
+    btn.disabled = false; txt.style.display = 'block'; load.style.display = 'none';
+    document.getElementById('formOk').classList.add('show');
+    document.getElementById('cForm').reset();
+    setTimeout(() => document.getElementById('formOk').classList.remove('show'), 8000);
+  });
+}
+</script>
+</body>
+</html>
